@@ -10,6 +10,7 @@
 		"watch": "concurrently \"vite build --watch\" \"vite preview\""
 	},
 	"dependencies": {
+		"rxjs": "^7.8.1",
 		"solid-js": "^1.9.3"
 	},
 	"devDependencies": {

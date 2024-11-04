@@ -12,6 +12,7 @@ export default defineConfig({
 			filename: 'remoteEntry.js',
 			exposes: {
 				'./cartMounter': './src/cartMounter.jsx',
+				'./cart': './src/cart.js',
 			},
 			shared: ['solid-js'],
 		}),
