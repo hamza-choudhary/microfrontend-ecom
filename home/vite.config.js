@@ -13,6 +13,7 @@ export default defineConfig({
 				productApp: 'http://localhost:5002/assets/remoteEntry.js',
 				headerApp: 'http://localhost:5003/assets/remoteEntry.js',
 				footerApp: 'http://localhost:5004/assets/remoteEntry.js',
+				solidApp: 'http://localhost:5005/assets/remoteEntry.js',
 			},
 			shared: ['react', 'react-dom'],
 		}),
