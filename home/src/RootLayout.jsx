@@ -1,12 +1,10 @@
 import footerMounter from 'footerApp/footerMounter'
 import Header from 'headerApp/Header'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { Outlet } from 'react-router-dom'
-import { addItem, cart } from 'solidApp/cart'
 import cartMounter from 'solidApp/cartMounter'
 
 export default function RootLayout() {
-	const [myCart, setMyCart] = useState([])
 	const footerRef = useRef()
 	const cartRef = useRef()
 
@@ -15,17 +13,8 @@ export default function RootLayout() {
 		cartMounter(cartRef.current)
 	}, [])
 
-	useEffect(() => {
-		addItem()
-		const subscription = cart.subscribe((val) => setMyCart(val))
-		return () => subscription.unsubscribe()
-	}, [])
-
-	console.log(JSON.stringify(myCart))
-
 	return (
-		<div>
-			in RootLayout
+		<div style={{backgroundColor:'pink'}}>
 			<div ref={cartRef} />
 			<Header />
 			<Outlet />
