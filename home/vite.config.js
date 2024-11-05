@@ -15,7 +15,7 @@ export default defineConfig({
 				footerApp: 'http://localhost:5004/assets/remoteEntry.js',
 				solidApp: 'http://localhost:5005/assets/remoteEntry.js',
 			},
-			shared: ['react', 'react-dom'],
+			shared: ['react', 'react-dom', 'react-router-dom'],
 		}),
 	],
 	build: {

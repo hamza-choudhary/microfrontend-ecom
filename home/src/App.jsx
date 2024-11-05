@@ -9,12 +9,11 @@ const router = createBrowserRouter([
 		element: <RootLayout />,
 		children: [
 			{ index: true, element: <ProductListPage /> },
-			{ path: 'product', element: <ProductDetailPage /> },
+			{ path: 'product/:id', element: <ProductDetailPage /> },
 		],
 	},
 ])
 
 export default function App() {
-	console.log('in app')
 	return <RouterProvider router={router} />
 }

@@ -14,7 +14,10 @@ export default defineConfig({
 			exposes: {
 				'./Header': './src/Header',
 			},
-			shared: ['react', 'react-dom'],
+			remotes: {
+				solidApp: 'http://localhost:5005/assets/remoteEntry.js',
+			},
+			shared: ['react', 'react-dom', 'react-router-dom'],
 		}),
 	],
 	build: {

@@ -15,7 +15,10 @@ export default defineConfig({
 				'./ProductListPage': './src/ProductListPage',
 				'./ProductDetailPage': './src/ProductDetailPage',
 			},
-			shared: ['react', 'react-dom'],
+			remotes: {
+				solidApp: 'http://localhost:5005/assets/remoteEntry.js',
+			},
+			shared: ['react', 'react-dom', 'react-router-dom'],
 		}),
 	],
 	build: {
