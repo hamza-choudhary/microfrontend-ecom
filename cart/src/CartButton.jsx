@@ -1,12 +1,12 @@
+// import { Minus, Plus, ShoppingCart, Trash2, X } from 'lucide-solid'
 // import { createEffect, createSignal, For } from 'solid-js'
-import {
-	addToCart,
-	cart$,
-	clearCart,
-	getCart,
-	getTotalItems,
-	removeFromCart,
-} from './cart'
+// import {
+// 	addToCart,
+// 	cart$,
+// 	clearCart,
+// 	getTotalItems,
+// 	removeFromCart,
+// } from './cart'
 
 // export default function CartButton() {
 // 	const [isCartOpen, setIsCartOpen] = createSignal(false)
@@ -37,10 +37,11 @@ import {
 // 	return (
 // 		<div class="relative">
 // 			<button
-// 				class="flex items-center text-gray-600 hover:text-gray-800 transition-colors focus:outline-none"
+// 				class="flex items-center text-gray-600 hover:text-gray-800 transition-colors focus:outline-none gap-2 border px-4 py-2 rounded-full border-red-500"
 // 				onClick={() => setIsCartOpen(!isCartOpen())}
 // 			>
-// 				{/* <ShoppingCart class="w-6 h-6 mr-1" /> */}
+// 				Cart
+// 				<ShoppingCart class="w-6 h-6 mr-1" />
 // 				<span class="bg-red-500 text-white rounded-full px-2 py-1 text-xs font-bold">
 // 					{cartCount()}
 // 				</span>
@@ -74,7 +75,7 @@ import {
 // 												class="text-gray-500 hover:text-gray-700 focus:outline-none"
 // 												onClick={() => handleRemoveFromCart(item.id)}
 // 											>
-// 												{/* <Minus class="w-4 h-4" /> */}
+// 												<Minus class="w-4 h-4" />
 // 											</button>
 // 											<span class="mx-2 font-medium">{item.quantity}</span>
 // 											<button
@@ -103,7 +104,7 @@ import {
 // 								class="w-full mt-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
 // 								onClick={handleClearCart}
 // 							>
-// 								{/* <Trash2 class="w-4 h-4 inline-block mr-2" /> */}
+// 								<Trash2 class="w-4 h-4 inline-block mr-2" />
 // 								Clear Cart
 // 							</button>
 // 						</>
@@ -113,35 +114,30 @@ import {
 // 		</div>
 // 	)
 // }
-import { createEffect, createSignal, For } from 'solid-js'
-// import { ShoppingCart, X, Trash2, Plus, Minus } from 'lucide-react'
+// CartButton.jsx
 import { Minus, Plus, ShoppingCart, Trash2, X } from 'lucide-solid'
+import { createEffect, createSignal, onCleanup } from 'solid-js'
+import {
+	addToCart,
+	cart$,
+	clearCart,
+	getTotalItems,
+	removeFromCart,
+} from './cart'
 
 export default function CartButton() {
 	const [isCartOpen, setIsCartOpen] = createSignal(false)
+	const [cartData, setCartData] = createSignal([])
 	const [cartCount, setCartCount] = createSignal(0)
-	const [cart, setCart] = createSignal([])
 
 	createEffect(() => {
 		const subscription = cart$.subscribe((updatedCart) => {
-			setCart(updatedCart)
+			setCartData(updatedCart)
 			setCartCount(getTotalItems())
 		})
 
-		return () => subscription.unsubscribe()
+		onCleanup(() => subscription.unsubscribe())
 	})
-
-	const handleRemoveFromCart = (id) => {
-		removeFromCart(id)
-	}
-
-	const handleClearCart = () => {
-		clearCart()
-	}
-
-	const handleAddToCart = (id) => {
-		addToCart(id)
-	}
 
 	return (
 		<div class="relative">
@@ -166,11 +162,11 @@ export default function CartButton() {
 							<X class="w-5 h-5" />
 						</button>
 					</div>
-					{cart().length === 0 ? (
+					{cartData().length === 0 ? (
 						<p class="text-gray-500">Your cart is empty</p>
 					) : (
 						<>
-							<For each={cart()}>
+							<For each={cartData()}>
 								{(item) => (
 									<div class="flex justify-between items-center mb-4 pb-4 border-b border-gray-200">
 										<div class="flex-1">
@@ -182,14 +178,14 @@ export default function CartButton() {
 										<div class="flex items-center">
 											<button
 												class="text-gray-500 hover:text-gray-700 focus:outline-none"
-												onClick={() => handleRemoveFromCart(item.id)}
+												onClick={() => removeFromCart(item.id)}
 											>
 												<Minus class="w-4 h-4" />
 											</button>
 											<span class="mx-2 font-medium">{item.quantity}</span>
 											<button
 												class="text-gray-500 hover:text-gray-700 focus:outline-none"
-												onClick={() => handleAddToCart(item.id)}
+												onClick={() => addToCart(item)}
 											>
 												<Plus class="w-4 h-4" />
 											</button>
@@ -201,7 +197,7 @@ export default function CartButton() {
 								<span class="font-medium">Total:</span>
 								<span class="font-bold">
 									$
-									{cart()
+									{cartData()
 										.reduce(
 											(total, item) => total + item.price * item.quantity,
 											0
@@ -211,7 +207,7 @@ export default function CartButton() {
 							</div>
 							<button
 								class="w-full mt-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
-								onClick={handleClearCart}
+								onClick={clearCart}
 							>
 								<Trash2 class="w-4 h-4 inline-block mr-2" />
 								Clear Cart
