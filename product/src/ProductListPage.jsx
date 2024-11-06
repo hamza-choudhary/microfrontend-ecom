@@ -1,17 +1,25 @@
 /* eslint-disable react/prop-types */
+import { ShoppingCart } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { addToCart } from 'solidApp/cart'
 import { productData } from './data'
-import { ShoppingCart } from 'lucide-react'
+import { LogoSVG } from './LogoSVG'
 
 export default function ProductListPage() {
 	return (
-		<div className="container mx-auto px-4 py-8">
-			<h2 className="text-3xl font-bold mb-8 text-gray-800">Our Products</h2>
-			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-				{productData.map((product) => (
-					<ProductCard key={product.id} product={product} />
-				))}
+		<div className="relative bg-gradient-to-br from-blue-200 to-indigo-400 overflow-hidden border-4 border-dashed border-red-600">
+			<div className="container mx-auto relative z-10 ">
+				<h2 className="text-3xl font-bold mb-8 text-gray-800 animate-fade-in">
+					Our Products
+				</h2>
+				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 p-8 rounded-lg">
+					{productData.map((product) => (
+						<ProductCard key={product.id} product={product} />
+					))}
+				</div>
+			</div>
+			<div className="absolute bottom-0 right-0 w-64 h-64 opacity-10 animate-spin-slow">
+				<LogoSVG />
 			</div>
 		</div>
 	)

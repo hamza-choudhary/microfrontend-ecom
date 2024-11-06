@@ -20,13 +20,15 @@ onMounted(() => {
 
 <template>
 	<footer
-		class="bg-gradient-to-r from-green-400 to-blue-500 text-white py-8 relative overflow-hidden"
+		class="bg-gradient-to-r from-green-400 to-blue-500 text-white py-8 relative overflow-hidden border-2 border-dashed border-red-600"
 	>
 		<div class="container mx-auto px-4">
 			<div class="grid grid-cols-3 gap-8">
 				<div class="space-y-4">
 					<h3 class="text-2xl font-bold">Vue Footer</h3>
-					<p class="text-green-100">Crafted with super powers of hamza using Vue.js</p>
+					<p class="text-green-100">
+						Crafted with super powers of hamza using Vue.js
+					</p>
 				</div>
 				<div class="space-y-4">
 					<h4 class="text-xl font-semibold">Quick Links</h4>
