@@ -7,7 +7,7 @@ import { LogoSVG } from './LogoSVG'
 
 export default function ProductListPage() {
 	return (
-		<div className="relative bg-gradient-to-br from-blue-200 to-indigo-400 overflow-hidden border-4 border-dashed border-red-600">
+		<div className="relative bg-gradient-to-br from-pink-200 to-red-400 overflow-hidden border-4 border-dashed border-red-600">
 			<div className="container mx-auto relative z-10 ">
 				<h2 className="text-3xl font-bold mb-8 text-gray-800 animate-fade-in">
 					Our Products

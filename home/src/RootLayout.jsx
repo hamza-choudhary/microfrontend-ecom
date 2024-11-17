@@ -11,7 +11,7 @@ export default function RootLayout() {
 	}, [])
 
 	return (
-		<div className="p-4 border-dashed border-8 border-orange-400 bg-pink-100">
+		<div className="p-4 border-dashed border-8 border-orange-400 bg-yellow-100">
 			<Header />
 			<div className="my-4 min-h-[60vh]">
 				<Outlet />
