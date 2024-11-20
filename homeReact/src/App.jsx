@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import RootLayout from './RootLayout'
+import SafeComponent from './SafeComponent'
 const ProductListPage = React.lazy(() => import('productApp/ProductListPage'))
 const ProductDetailPage = React.lazy(() =>
 	import('productApp/ProductDetailPage')
@@ -14,9 +15,11 @@ const router = createBrowserRouter([
 			{
 				index: true,
 				element: (
-					<Suspense fallback={<div>Product list page is LOADING...</div>}>
-						<ProductListPage />
-					</Suspense>
+					<SafeComponent>
+						<Suspense fallback={<div>Product list page is LOADING...</div>}>
+							<ProductListPage />
+						</Suspense>
+					</SafeComponent>
 				),
 			},
 			{
