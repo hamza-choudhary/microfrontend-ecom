@@ -1,6 +1,7 @@
 import footerMounter from 'footerApp/footerMounter'
 import React, { Suspense, useEffect, useRef, useState } from 'react'
 import { Outlet } from 'react-router-dom'
+import SafeComponent from './SafeComponent'
 const Header = React.lazy(() => import('headerApp/Header'))
 
 export default function RootLayout() {
@@ -20,9 +21,11 @@ export default function RootLayout() {
 				show heder
 			</button>
 			{showHeader && (
-				<Suspense>
-					<Header />
-				</Suspense>
+				<SafeComponent>
+					<Suspense>
+						<Header options={{ title: 'hello title' }} />
+					</Suspense>
+				</SafeComponent>
 			)}
 			<div className="my-4 min-h-[60vh]">
 				<Outlet />

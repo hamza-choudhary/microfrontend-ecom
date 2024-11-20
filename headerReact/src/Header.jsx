@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import cartMounter from 'solidApp/cartMounter'
 
-export default function Header() {
+export default function Header({ options }) {
 	const cartRef = useRef()
 
 	useEffect(() => {
@@ -23,7 +23,7 @@ export default function Header() {
 						</svg>
 					</div>
 					<span className="text-2xl font-bold text-gray-800 group-hover:text-[#61DAFB] transition-colors duration-300">
-						ElegantShop
+						ElegantShop | {options.title}
 					</span>
 				</Link>
 				<div className="relative">
