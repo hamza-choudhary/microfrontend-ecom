@@ -1,7 +1,6 @@
+import footerMounter from 'footerApp/footerMounter'
 import React, { Suspense, useEffect, useRef, useState } from 'react'
 import { Outlet } from 'react-router-dom'
-// const footerMounter = React.lazy(() => import('footerApp/footerMounter'))
-import footerMounter from 'footerApp/footerMounter'
 const Header = React.lazy(() => import('headerApp/Header'))
 
 export default function RootLayout() {
