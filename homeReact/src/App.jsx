@@ -1,7 +1,9 @@
-import ProductDetailPage from 'productApp/ProductDetailPage'
-import ProductListPage from 'productApp/ProductListPage'
+import React, { Suspense } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import RootLayout from './RootLayout'
+import SafeComponent from './SafeComponent'
+const ProductDetailPage = React.lazy(() => import('productApp/ProductDetailPage'))
+const ProductListPage = React.lazy(() => import('productApp/ProductListPage'))
 
 const router = createBrowserRouter([
 	{
@@ -10,11 +12,23 @@ const router = createBrowserRouter([
 		children: [
 			{
 				index: true,
-				element: <ProductListPage />,
+				element: (
+					<SafeComponent>
+						<Suspense fallback={<div>loading the header in suspense</div>}>
+							<ProductListPage />
+						</Suspense>
+					</SafeComponent>
+				),
 			},
 			{
 				path: 'product/:id',
-				element: <ProductDetailPage />,
+				element: (
+					<SafeComponent>
+						<Suspense fallback={<div>loading the header in suspense</div>}>
+							<ProductDetailPage />
+						</Suspense>
+					</SafeComponent>
+				),
 			},
 		],
 	},
