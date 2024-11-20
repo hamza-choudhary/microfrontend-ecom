@@ -1,7 +1,6 @@
 import React, { Suspense } from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import RootLayout from './RootLayout'
-
 const ProductListPage = React.lazy(() => import('productApp/ProductListPage'))
 const ProductDetailPage = React.lazy(() =>
 	import('productApp/ProductDetailPage')
