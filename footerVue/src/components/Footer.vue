@@ -27,7 +27,7 @@ onMounted(() => {
 				<div class="space-y-4">
 					<h3 class="text-2xl font-bold">Vue Footer</h3>
 					<p class="text-green-100">
-						Crafted with super powers using Vue.js
+						Crafted with super powers of hamza using Vue.js
 					</p>
 				</div>
 				<div class="space-y-4">
